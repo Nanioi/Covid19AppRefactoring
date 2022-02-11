@@ -15,6 +15,6 @@
 
     <item android:id="@+id/precaution"
         android:icon="@drawable/soap"
-        android:title="예방"/>
+        android:title="예방수칙"/>
 
 </menu>
