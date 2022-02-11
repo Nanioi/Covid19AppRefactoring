@@ -13,7 +13,7 @@ class MainActivity : AppCompatActivity() {
         val summaryFragment = SummaryFragment()
 //        val NewFragment = NewFragment()
 //        val clinicFragment = ClinicFragment()
-//        val precautionFragment = PrecautionFragment()
+        val precautionFragment = PrecautionFragment()
 
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
 
@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.summary -> replaceFragment(summaryFragment)
 //                R.id.New -> replaceFragment(NewFragment)
 //                R.id.clinic -> replaceFragment(clinicFragment)
-//                R.id.precaution -> replaceFragment(precautionFragment)
+                R.id.precaution -> replaceFragment(precautionFragment)
             }
             true
         }
