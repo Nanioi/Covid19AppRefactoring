@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <TableLayout
+        android:id="@+id/summary_table_layout"
+        android:layout_width="match_parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/button1"
+        android:layout_marginTop="10dp"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:stretchColumns="1">
+
+        <TableRow android:layout_marginBottom="10dp">
+
+            <TextView
+                android:text="정의"
+                tools:ignore="HardcodedText" />
+
+            <TextView
+                android:id="@+id/justice"
+                android:width="0dp"
+                android:text="2019년 12월 중국 우한에서 처음 발생한 뒤 전 세계로 확산된,  새로운 유형의 코로나바이러스에 의한 호흡기 감염질환. 더보기"
+                android:textColor="@color/custom_black"
+                tools:ignore="HardcodedText" />
+        </TableRow>
+
+        <TableRow android:layout_marginBottom="10dp">
+
+            <TextView
+                android:text="증상"
+                tools:ignore="HardcodedText" />
+
+            <TextView
+                android:width="0dp"
+                android:text="발열, 권태감, 기침, 호흡곤란 및 폐렴 등 경증에서 중증까지 다양한 호흡기감염증이 나타남. 그 외 가래, 인후통, 두통, 객혈과 오심, 설사 등도 나타남"
+                android:textColor="@color/custom_black"
+                tools:ignore="HardcodedText" />
+        </TableRow>
+
+        <TableRow android:layout_marginBottom="10dp">
+
+            <TextView
+                android:text="검사"
+                tools:ignore="HardcodedText" />
+
+            <TextView
+                android:id="@+id/check"
+                android:width="0dp"
+                android:text="필수검체는 상기도 검체이며, 하기도 검체는 가래가 있는 환자에서 채취. 검체는 의사, 간호사, 임상병리사가 지정된 장소\n(선별진료소 등)에서 채취함. 더보기 "
+                android:textColor="@color/custom_black"
+                tools:ignore="HardcodedText" />
+        </TableRow>
+
+        <TableRow android:layout_marginBottom="10dp">
+
+            <TextView
+                android:text="백신"
+                tools:ignore="HardcodedText" />
+
+            <TextView
+                android:id="@+id/treatment"
+                android:width="0dp"
+                android:text="전 국민을 대상으로 접종하되, 접종순서 및 백신의 공급 상황에 맞춰 차례대로 접종. 백신종류별 특성, 안전성 및 주의사항"
+                android:textColor="@color/custom_black"
+                tools:ignore="HardcodedText" />
+        </TableRow>
+
+        <TableRow android:layout_marginBottom="10dp">
+
+            <TextView
+                android:layout_marginEnd="10dp"
+                android:text="긴급연락처"
+                tools:ignore="HardcodedText" />
+
+            <TextView
+                android:id="@+id/emergency_number"
+                android:width="0dp"
+                android:text="가까운 선별 진료소, 관할 보건소, 지역콜센터120, 콜센터 1339"
+                android:textColor="@color/custom_black"
+                tools:ignore="HardcodedText" />
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:text="관련정보"
+                tools:ignore="HardcodedText" />
+
+            <TextView
+                android:id="@+id/information"
+                android:width="0dp"
+                android:text="보도자료, 최신뉴스, SNU 팩트체크, 대응수칙, \n전자출입명부 안내, 네이버 QR체크인 안내"
+                android:textColor="@color/custom_black"
+                tools:ignore="HardcodedText" />
+        </TableRow>
+    </TableLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_marginTop="10dp"
+        android:paddingVertical="20dp"
+        android:paddingHorizontal="30dp"
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/red_border"
+        app:layout_constraintEnd_toStartOf="@+id/button2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/text1"
+        app:layout_constraintTop_toBottomOf="@+id/summary_table_layout"
+        android:text="코로나19검사"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:paddingVertical="20dp"
+        android:paddingHorizontal="30dp"
+        android:layout_width="wrap_content"
+        android:id="@+id/button2"
+        android:background="@drawable/red_border"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toStartOf="@+id/button3"
+        app:layout_constraintStart_toEndOf="@+id/button1"
+        app:layout_constraintTop_toTopOf="@+id/button1"
+        android:text="재택치료"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:paddingVertical="20dp"
+        android:paddingHorizontal="30dp"
+        android:id="@+id/button3"
+        android:background="@drawable/red_border"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/button2"
+        app:layout_constraintTop_toTopOf="@+id/button2"
+        android:text="코로나19브리핑"/>
+
+    <TextView
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button1"
+        app:layout_constraintBottom_toTopOf="@+id/source"
+        android:id="@+id/text1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="25dp"
+        android:text="코로나19 감염이 의심되면 즉시 보건소 및 콜센터(전화 1339)에 신고바랍니다."
+        android:textStyle="bold"
+        tools:ignore="HardcodedText" />
+
+    <TextView
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text1"
+        android:id="@+id/source"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-30dp"
+        android:padding="25dp"
+        android:text="출처      중앙재난안전대책본부, 중앙사고수습본부, \n              중앙방역대책본부, Johns Hopkins CSSE"
+        android:textStyle="bold"
+        tools:ignore="HardcodedText" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

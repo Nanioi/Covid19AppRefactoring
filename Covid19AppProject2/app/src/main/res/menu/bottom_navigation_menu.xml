@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/summary"
+        android:icon="@drawable/covid"
+        android:title="개요"/>
+
+    <item android:id="@+id/New"
+        android:icon="@drawable/newperson"
+        android:title="신규확진"/>
+
+    <item android:id="@+id/clinic"
+        android:icon="@drawable/placeholder"
+        android:title="선별진료소"/>
+
+    <item android:id="@+id/precaution"
+        android:icon="@drawable/soap"
+        android:title="예방"/>
+
+</menu>
