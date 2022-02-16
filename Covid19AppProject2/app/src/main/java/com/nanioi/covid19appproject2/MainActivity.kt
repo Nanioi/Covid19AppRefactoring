@@ -11,8 +11,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val summaryFragment = SummaryFragment()
-//        val NewFragment = NewFragment()
-//        val clinicFragment = ClinicFragment()
+        val domesticFragment = DomesticFragment()
+        val clinicFragment = ClinicFragment()
         val precautionFragment = PrecautionFragment()
 
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
@@ -22,8 +22,8 @@ class MainActivity : AppCompatActivity() {
         bottomNavigationView.setOnNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.summary -> replaceFragment(summaryFragment)
-//                R.id.New -> replaceFragment(NewFragment)
-//                R.id.clinic -> replaceFragment(clinicFragment)
+                R.id.domestic_status -> replaceFragment(domesticFragment)
+                R.id.clinic -> replaceFragment(clinicFragment)
                 R.id.precaution -> replaceFragment(precautionFragment)
             }
             true

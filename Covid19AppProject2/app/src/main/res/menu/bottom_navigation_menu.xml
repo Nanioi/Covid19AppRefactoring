@@ -5,9 +5,9 @@
         android:icon="@drawable/covid"
         android:title="개요"/>
 
-    <item android:id="@+id/New"
+    <item android:id="@+id/domestic_status"
         android:icon="@drawable/newperson"
-        android:title="신규확진"/>
+        android:title="국내현황"/>
 
     <item android:id="@+id/clinic"
         android:icon="@drawable/placeholder"
