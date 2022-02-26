@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.nanioi.covid19appproject2.data.network.RetrofitClient
+import com.nanioi.covid19appproject2.Status.view.StatusFragment
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -12,7 +12,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val summaryFragment = SummaryFragment()
-        val domesticFragment = DomesticFragment()
+        val domesticFragment = StatusFragment()
         val clinicFragment = ClinicFragment()
         val precautionFragment = PrecautionFragment()
 
