@@ -1,10 +1,14 @@
-package com.nanioi.covid19appproject2
+package com.nanioi.covid19appproject2.presentation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.nanioi.covid19appproject2.Status.view.StatusFragment
+import com.nanioi.covid19appproject2.R
+import com.nanioi.covid19appproject2.presentation.view.ClinicFragment
+import com.nanioi.covid19appproject2.presentation.view.PrecautionFragment
+import com.nanioi.covid19appproject2.presentation.status.StatusFragment
+import com.nanioi.covid19appproject2.presentation.view.SummaryFragment
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

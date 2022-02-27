@@ -1,4 +1,4 @@
-package com.nanioi.covid19appproject2
+package com.nanioi.covid19appproject2.presentation.view
 
 import android.os.Bundle
 import android.text.util.Linkify
@@ -6,7 +6,6 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import com.nanioi.covid19appproject2.R.layout
 import com.nanioi.covid19appproject2.databinding.FragmentPrecautionBinding
-import com.nanioi.covid19appproject2.databinding.FragmentSummaryBinding
 import java.util.regex.Matcher
 import java.util.regex.Pattern
 
