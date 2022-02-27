@@ -1,8 +1,6 @@
-package com.nanioi.covid19appproject2.data
+package com.nanioi.covid19appproject2.data.remote.service
 
-import retrofit2.http.GET
-
-class ClinicInterface {
+class ClinicLocationApiService {
 
 //    @GET("/rprtClicHospService/getRprtClicHospService")
 //    suspend fun getClinicLocation():InfectionStatus

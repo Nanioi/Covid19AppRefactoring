@@ -1,4 +1,4 @@
-package com.nanioi.covid19appproject2.network
+package com.nanioi.covid19appproject2.data.remote.api
 
 object Url {
     const val STATUS_BASE_URL = "http://openapi.data.go.kr/openapi/service/rest/Covid19/"
