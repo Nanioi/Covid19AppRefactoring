@@ -1,4 +1,4 @@
-package com.nanioi.covid19appproject2.presentation.view
+package com.nanioi.covid19appproject2
 
 import android.content.Intent
 import android.net.Uri
