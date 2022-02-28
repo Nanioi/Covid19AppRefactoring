@@ -74,4 +74,7 @@ dependencies {
 
     kapt 'com.tickaroo.tikxml:processor:0.8.13'
     kapt 'com.tickaroo.tikxml:auto-value-tikxml:0.8.13'
+
+    //Jsoup
+    implementation 'org.jsoup:jsoup:1.13.1'
 }

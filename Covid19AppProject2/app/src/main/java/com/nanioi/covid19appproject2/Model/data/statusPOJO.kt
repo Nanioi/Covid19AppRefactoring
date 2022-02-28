@@ -5,7 +5,7 @@ import com.tickaroo.tikxml.annotation.PropertyElement
 import com.tickaroo.tikxml.annotation.Xml
 
 @Xml( name = "response")
-data class InfectionStatus (
+data class ClinicResponse (
     @Element
     val header: Header,
     @Element
@@ -38,10 +38,16 @@ data class Items(
 
 @Xml
 data class Item(
-    @PropertyElement(name="decideCnt") var decideCnt: String?,
-    @PropertyElement(name="deathCnt") var deathCnt : String?,
-    @PropertyElement(name="stateDt") var stateDt : String?,
-    @PropertyElement(name="stateTime") var stateTime : String?
+    @PropertyElement(name="addr") var addr: String?,
+    @PropertyElement(name="pcrPsblYn") var pcrPsblYn : String?,
+    @PropertyElement(name="ratPsblYn") var ratPsblYn : String?,
+    @PropertyElement(name="recuClCd") var recuClCd : String?,
+    @PropertyElement(name="sidoCdNm") var sidoCdNm: String?,
+    @PropertyElement(name="sgguCdNm") var sgguCdNm : String?,
+    @PropertyElement(name="XPos") var XPos : String?,
+    @PropertyElement(name="YPos") var YPos : String?,
+    @PropertyElement(name="yadmNm") var yadmNm : String?,
+    @PropertyElement(name="telno") var telno : String?
 ){
-    constructor() : this(null,null,null,null)
+    constructor() : this(null,null,null,null,null,null,null,null,null,null)
 }

@@ -1,10 +1,10 @@
-package com.nanioi.covid19appproject2
+package com.nanioi.covid19appproject2.View
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.nanioi.covid19appproject2.Status.view.StatusFragment
+import com.nanioi.covid19appproject2.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
