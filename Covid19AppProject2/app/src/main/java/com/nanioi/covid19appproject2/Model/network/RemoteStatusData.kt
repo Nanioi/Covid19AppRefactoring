@@ -2,17 +2,27 @@ package com.nanioi.covid19appproject2.Model.network
 
 import android.os.AsyncTask
 import android.util.Log
+import com.nanioi.covid19appproject2.Model.data.DataSource
 import com.nanioi.covid19appproject2.Model.data.InfectionStatus
-import com.nanioi.covid19appproject2.Model.network.Url.Infection_Status_URL
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Deferred
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
 import org.jsoup.select.Elements
+import java.lang.Exception
+import kotlin.system.measureTimeMillis
 
-class JSoupParsingTask () :
-    AsyncTask<Any?, Any?, List<InfectionStatus>>() { //input, progress update type, result type
-    var statusList = mutableListOf<InfectionStatus>()
-    override fun doInBackground(vararg params: Any?): List<InfectionStatus>? {
-        val doc: Document = Jsoup.connect(Infection_Status_URL).get()
+class RemoteStatusData : DataSource {
+    override fun getStatusData(): List<InfectionStatus>? {
+        val statusList = getStatusFromWeb(Url.Infection_Status_URL)
+        return statusList
+    }
+
+    private fun getStatusFromWeb(url : String): List<InfectionStatus>?{
+        var statusList = mutableListOf<InfectionStatus>()
+        val doc: Document = Jsoup.connect(Url.Infection_Status_URL).get()
         val elts: Elements = doc.select("div.caseTable div")
 
 
@@ -29,11 +39,6 @@ class JSoupParsingTask () :
 
         }
         return statusList
-    }
 
-    override fun onPostExecute(result: List<InfectionStatus>) {
-        super.onPostExecute(result)
-        //todo 데이터 result 전달
-        Log.d("Data : ", statusList.toString())
     }
 }

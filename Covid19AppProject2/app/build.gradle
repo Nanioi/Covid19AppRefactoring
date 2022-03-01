@@ -49,6 +49,12 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 
+//    // koin DI
+//    implementation "org.koin:koin-android:2.1.5"
+//    implementation "org.koin:koin-android-scope:2.1.5"
+//    implementation "org.koin:koin-android-viewmodel:2.1.5"
+//    implementation "org.koin:koin-android-ext:2.1.5"
+
     //NaverMap
     implementation 'com.naver.maps:map-sdk:3.11.0'
     implementation 'com.google.android.gms:play-services-location:18.0.0'
