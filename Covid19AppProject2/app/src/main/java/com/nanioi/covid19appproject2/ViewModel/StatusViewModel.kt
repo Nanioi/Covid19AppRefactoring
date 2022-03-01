@@ -1,26 +1,28 @@
 package com.nanioi.covid19appproject2.ViewModel
 
+import android.content.Context
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.google.android.gms.common.api.PendingResult
 import com.nanioi.covid19appproject2.Model.data.InfectionStatus
-import com.nanioi.covid19appproject2.Model.network.ClinicLocationRetrofitClient
-import com.nanioi.covid19appproject2.data.ClinicResponse
+import com.nanioi.covid19appproject2.View.StatusFragment
 import com.nanioi.covid19appproject2.repository.StatusRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
-class StatusViewModel(
-    private val statusRepository: StatusRepository
-):ViewModel() {
+class StatusViewModel:ViewModel() {
     private var _statusState = MutableLiveData<StatusState>(StatusState.UnInitialized)
     val statusState : LiveData<StatusState> = _statusState
 
     private lateinit var statusList : List<InfectionStatus>
+    private val statusRepository = StatusRepository()
+
+    fun init(context: Context){
+        if (_statusState.value !=null)
+            return
+    }
 
     fun fetchData() = viewModelScope.launch(Dispatchers.IO){
         setState(StatusState.Loading)
