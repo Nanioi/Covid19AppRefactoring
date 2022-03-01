@@ -6,7 +6,6 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.nanioi.covid19appproject2.BuildConfig
-import com.nanioi.covid19appproject2.Model.network.JSoupParsingTask
 import com.nanioi.covid19appproject2.R
 import com.nanioi.covid19appproject2.ViewModel.ClinicViewModel
 import java.util.*
@@ -21,7 +20,6 @@ class ClinicFragment : Fragment(R.layout.fragment_clinic) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        JSoupParsingTask().execute()
         clinicViewModel.fetchData(setUpPrameter())
         observeStatusData()
     }
