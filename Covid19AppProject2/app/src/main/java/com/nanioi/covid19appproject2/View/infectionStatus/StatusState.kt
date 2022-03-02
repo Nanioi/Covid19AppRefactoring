@@ -1,4 +1,4 @@
-package com.nanioi.covid19appproject2.ViewModel
+package com.nanioi.covid19appproject2.View.infectionStatus
 
 import com.nanioi.covid19appproject2.Model.data.InfectionStatus
 
