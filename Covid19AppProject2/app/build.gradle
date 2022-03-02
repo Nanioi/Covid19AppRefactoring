@@ -83,4 +83,9 @@ dependencies {
 
     //Jsoup
     implementation 'org.jsoup:jsoup:1.13.1'
+
+    // Room library
+    implementation "androidx.room:room-runtime:2.3.0"
+    kapt "androidx.room:room-compiler:2.3.0"
+    implementation "androidx.room:room-ktx:2.3.0"
 }

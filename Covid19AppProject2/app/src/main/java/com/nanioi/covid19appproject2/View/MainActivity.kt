@@ -5,6 +5,8 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.nanioi.covid19appproject2.R
+import com.nanioi.covid19appproject2.View.clinic.ClinicFragment
+import com.nanioi.covid19appproject2.View.infectionStatus.StatusFragment
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

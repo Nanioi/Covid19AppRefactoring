@@ -1,6 +1,5 @@
-package com.nanioi.covid19appproject2.View
+package com.nanioi.covid19appproject2.View.infectionStatus
 
-import android.os.AsyncTask
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -8,15 +7,10 @@ import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.nanioi.covid19appproject2.Model.data.InfectionStatus
-import com.nanioi.covid19appproject2.Model.network.Url
 import com.nanioi.covid19appproject2.R.layout
-import com.nanioi.covid19appproject2.ViewModel.StatusState
+import com.nanioi.covid19appproject2.View.infectionStatus.StatusState
 import com.nanioi.covid19appproject2.ViewModel.StatusViewModel
 import com.nanioi.covid19appproject2.databinding.FragmentStatusBinding
-import org.jsoup.Jsoup
-import org.jsoup.nodes.Document
-import org.jsoup.select.Elements
 
 class StatusFragment : Fragment(layout.fragment_status){
 
@@ -32,8 +26,6 @@ class StatusFragment : Fragment(layout.fragment_status){
 
         val fragmentStatusBinding = FragmentStatusBinding.bind(view)
         binding = fragmentStatusBinding
-
-        //JSoupParsingTask().execute()
 
         statusViewModel.init(requireContext())
 

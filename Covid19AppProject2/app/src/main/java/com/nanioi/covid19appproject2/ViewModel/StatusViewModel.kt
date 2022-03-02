@@ -7,7 +7,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.nanioi.covid19appproject2.Model.data.InfectionStatus
-import com.nanioi.covid19appproject2.View.StatusFragment
+import com.nanioi.covid19appproject2.View.infectionStatus.StatusState
 import com.nanioi.covid19appproject2.repository.StatusRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
