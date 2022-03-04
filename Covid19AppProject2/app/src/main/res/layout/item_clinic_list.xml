@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="20dp">
+
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#3546A1"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="의왕시보건소 선별진료소" />
+
+    <TextView
+        android:id="@+id/address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:textSize="15sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/name"
+        tools:text="경기도 의왕시 오봉로 34" />
+
+    <LinearLayout
+        android:id="@+id/operating_time"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="13dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/address">
+
+        <TextView
+            android:id="@+id/weekday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/circle_gray"
+            android:gravity="center"
+            android:textColor="@color/dark_gray"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/address"
+            tools:text="평" />
+
+        <TextView
+            android:id="@+id/weekday_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            app:layout_constraintBottom_toBottomOf="@+id/weekday"
+            app:layout_constraintStart_toEndOf="@+id/weekday"
+            app:layout_constraintTop_toTopOf="@id/weekday"
+            tools:text="9:00~12:00" />
+
+        <TextView
+            android:id="@+id/saturday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:layout_marginStart="10dp"
+            android:background="@drawable/circle_blue"
+            android:gravity="center"
+            android:textColor="@color/dark_blue"
+            app:layout_constraintStart_toEndOf="@+id/weekday_time"
+            app:layout_constraintTop_toTopOf="@id/weekday"
+            tools:text="토" />
+
+        <TextView
+            android:id="@+id/saturday_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            app:layout_constraintBottom_toBottomOf="@+id/saturday"
+            app:layout_constraintStart_toEndOf="@+id/saturday"
+            app:layout_constraintTop_toTopOf="@id/saturday"
+            tools:text="9:00~12:00" />
+
+        <TextView
+            android:id="@+id/holiday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:background="@drawable/circle_red"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:textColor="@color/circle_red"
+            app:layout_constraintStart_toEndOf="@+id/saturday_time"
+            app:layout_constraintTop_toTopOf="@id/weekday"
+            tools:text="일" />
+
+        <TextView
+            android:id="@+id/holiday_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            app:layout_constraintBottom_toBottomOf="@+id/holiday"
+            app:layout_constraintStart_toEndOf="@+id/holiday"
+            app:layout_constraintTop_toTopOf="@id/holiday"
+            tools:text="9:00~12:00" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tele_phone_num"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/operating_time"
+        tools:text=" ☎︎ 031-123-1234" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
