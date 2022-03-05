@@ -12,9 +12,6 @@ import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.resource.bitmap.CenterCrop
-import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.nanioi.covid19appproject2.Model.entity.ClinicLocationEntity
 import com.nanioi.covid19appproject2.adapters.ClinicViewPagerAdapter.Companion.differ
 import com.nanioi.covid19appproject2.databinding.ItemClinicListBinding

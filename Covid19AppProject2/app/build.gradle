@@ -18,6 +18,7 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
         buildConfigField "String", "OPENAPI_SERVICE_KEY", project.properties["OPENAPI_SERVICE_KEY"]
+        buildConfigField "String", "KAKAO_API_KEY", project.properties["KAKAO_API_KEY"]
     }
 
     buildTypes {
@@ -59,10 +60,10 @@ dependencies {
     implementation 'com.naver.maps:map-sdk:3.11.0'
     implementation 'com.google.android.gms:play-services-location:18.0.0'
 
-    //Glide
-    implementation 'com.github.bumptech.glide:glide:4.12.0'
-    kapt 'com.github.bumptech.glide:compiler:4.11.0'
-    implementation 'jp.wasabeef:glide-transformations:4.0.0'
+//    //Glide
+//    implementation 'com.github.bumptech.glide:glide:4.12.0'
+//    kapt 'com.github.bumptech.glide:compiler:4.11.0'
+//    implementation 'jp.wasabeef:glide-transformations:4.0.0'
 
     //Coroutines
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.3.1"
@@ -71,6 +72,7 @@ dependencies {
 
     //retrofit
     implementation "com.squareup.retrofit2:retrofit:2.7.2"
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
     implementation 'com.squareup.okhttp3:logging-interceptor:4.6.0'
 
     //XML Parser - TikXML
@@ -88,4 +90,8 @@ dependencies {
     implementation "androidx.room:room-runtime:2.3.0"
     kapt "androidx.room:room-compiler:2.3.0"
     implementation "androidx.room:room-ktx:2.3.0"
+
+    // Location
+    implementation 'com.google.android.gms:play-services-location:18.0.0'
+
 }

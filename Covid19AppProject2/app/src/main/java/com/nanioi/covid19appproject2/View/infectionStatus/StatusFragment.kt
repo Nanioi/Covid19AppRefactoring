@@ -16,6 +16,8 @@ class StatusFragment : Fragment(layout.fragment_status){
 
     private lateinit var binding: FragmentStatusBinding
 
+    //    private val key = BuildConfig.OPENAPI_SERVICE_KEY
+
     private val statusViewModel : StatusViewModel by lazy{
         ViewModelProvider(this).get(StatusViewModel::class.java)
     }
@@ -69,4 +71,19 @@ class StatusFragment : Fragment(layout.fragment_status){
         //todo
     }
 
+    //    private fun observeStatusData(){
+//        clinicViewModel.clinicLiveData.observe(viewLifecycleOwner){
+//            it?.let {
+//                Log.e("Parsing Data ::", it.toString())
+//            }
+//        }
+//    }
+//    private fun setUpPrameter(): HashMap<String, String>{
+//
+//        return hashMapOf(
+//            "serviceKey" to key.toString(),
+//            "pageNo" to "1",
+//            "numOfRows" to "100"
+//        )
+//    }
 }
