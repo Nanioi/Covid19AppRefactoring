@@ -3,7 +3,7 @@ package com.nanioi.covid19appproject2.Model.data.regionInfo
 
 import com.google.gson.annotations.SerializedName
 
-data class Document(
+data class RegionInfo(
     @SerializedName("address_name")
     val addressName: String?,
     @SerializedName("code")

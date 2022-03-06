@@ -1,36 +1,29 @@
 package com.nanioi.covid19appproject2.repository
 
-import android.content.res.AssetManager
 import android.util.Log
-import androidx.room.Room
 import com.nanioi.covid19appproject2.BuildConfig
 import com.nanioi.covid19appproject2.Model.apiService.ClinicLocationApiService
 import com.nanioi.covid19appproject2.Model.apiService.KakaoLocalApiService
-import com.nanioi.covid19appproject2.Model.data.regionInfo.Document
-import com.nanioi.covid19appproject2.Model.db.ClinicDatabase
-import com.nanioi.covid19appproject2.Model.db.dao.ClinicLocationDao
-import com.nanioi.covid19appproject2.Model.entity.ClinicLocationEntity
+import com.nanioi.covid19appproject2.Model.data.regionInfo.RegionInfo
 import com.nanioi.covid19appproject2.Model.network.Url
 import com.tickaroo.tikxml.TikXml
 import com.tickaroo.tikxml.retrofit.TikXmlConverterFactory
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.create
-import java.io.InputStream
 
 object Repository{
 
-    suspend fun getRegionInfo(latitude:Double,longitude:Double) : Document{
+    suspend fun getRegionInfo(latitude:Double,longitude:Double) : RegionInfo{
         val regionInfo = kakaoLocalApiService
             .getRegionInfo(longitude,latitude)
             .body()
             ?.documents
             ?.firstOrNull()
+
+        Log.d("regionInfo : ", regionInfo.toString())
 
         return regionInfo!!
     }
