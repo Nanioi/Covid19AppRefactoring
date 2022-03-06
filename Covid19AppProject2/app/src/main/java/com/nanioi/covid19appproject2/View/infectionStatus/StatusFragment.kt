@@ -35,8 +35,10 @@ class StatusFragment : Fragment(layout.fragment_status){
         statusViewModel.fetchData()
         observeStatusState()
     }
-    private fun initViews() {
-        statusViewModel.fetchData()
+    private fun initViews() = with(binding) {
+        refreshLayout.setOnRefreshListener {
+            statusViewModel.fetchData()
+        }
         // todo date 업데이트
     }
 

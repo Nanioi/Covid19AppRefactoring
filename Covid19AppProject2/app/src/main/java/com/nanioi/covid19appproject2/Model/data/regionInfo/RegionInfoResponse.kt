@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 
 data class RegionInfoResponse(
     @SerializedName("documents")
-    val documents: List<Document>?,
+    val documents: List<RegionInfo>?,
     @SerializedName("meta")
     val meta: Meta?
 )
