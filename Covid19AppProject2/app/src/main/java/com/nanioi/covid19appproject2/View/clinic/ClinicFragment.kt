@@ -58,6 +58,8 @@ class ClinicFragment : Fragment(R.layout.fragment_clinic) ,OnMapReadyCallback{
     //private val viewPagerAdapter = ClinicViewPagerAdapter()
     private val clinicListAdapter = ClinicListAdapter()
 
+
+
     override fun onAttach(context: Context) {
         super.onAttach(context)
         mContext = context
@@ -126,16 +128,25 @@ class ClinicFragment : Fragment(R.layout.fragment_clinic) ,OnMapReadyCallback{
         naverMap.maxZoom = 18.0
         naverMap.minZoom = 10.0
 
-        //초기값위치 변경
-        val cameraUpdate = CameraUpdate.scrollTo(LatLng(37.497885, 127.027512))
-        naverMap.moveCamera(cameraUpdate)
-
         //현위치 버튼 얻어오기
         val uiSetting = naverMap.uiSettings
         uiSetting.isLocationButtonEnabled = false // 원래 버튼 안보이
 
         locationSource = FusedLocationSource(this@ClinicFragment,REQUEST_ACCESS_LOCATION_PERMISSIONS  )
         naverMap.locationSource = locationSource
+
+        var latitude = 37.497885
+        var longitude = 127.027512
+
+        locationSource.lastLocation?.let {
+            latitude = locationSource.lastLocation!!.latitude
+            longitude = locationSource.lastLocation!!.longitude
+        }
+
+        // 위치 변경
+        val cameraUpdate = CameraUpdate.scrollTo(LatLng(latitude, longitude))
+        naverMap.moveCamera(cameraUpdate)
+
 
         getClinicLocationInfo()
     }
@@ -265,7 +276,7 @@ class ClinicFragment : Fragment(R.layout.fragment_clinic) ,OnMapReadyCallback{
 
         inputStream.bufferedReader().readLines().forEach {
             var token = it.split("\t")
-            var item = ClinicLocationEntity(token[0].toLong(),token[1],token[2],token[3],token[4],token[5],token[6],token[7],token[8])
+            var item = ClinicLocationEntity(token[0].toInt(),token[1],token[2],token[3],token[4],token[5],token[6],token[7],token[8],token[9])
             CoroutineScope(Dispatchers.Main).launch {
                 ClinicLocationDB.clinicDao().insert(item)
             }

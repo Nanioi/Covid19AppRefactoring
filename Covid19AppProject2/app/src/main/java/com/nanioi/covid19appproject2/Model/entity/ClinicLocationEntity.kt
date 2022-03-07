@@ -5,14 +5,15 @@ import androidx.room.PrimaryKey
 
 @Entity
 data class ClinicLocationEntity(
-    @PrimaryKey val id : Long?,
+    @PrimaryKey val id : Int,
     val city: String?,
     val sigungu: String?,
     val clinic_name: String?,
     val address : String?,
     val weekday_operating_time : String?,
     val saturday_operating_time : String?,
+    val sunday_operating_time : String?,
     val holiday_operating_time : String?,
-    val telephone_num: String
+    val telephone_num: String?
 )
 
