@@ -16,7 +16,7 @@ import retrofit2.create
 
 object Repository{
 
-    suspend fun getRegionInfo(latitude:Double,longitude:Double) : RegionInfo{
+    suspend fun getRegionInfo(latitude:Double,longitude:Double) : RegionInfo?{
         val regionInfo = kakaoLocalApiService
             .getRegionInfo(longitude,latitude)
             .body()
@@ -25,7 +25,7 @@ object Repository{
 
         Log.d("regionInfo : ", regionInfo.toString())
 
-        return regionInfo!!
+        return regionInfo
     }
 
     private val kakaoLocalApiService: KakaoLocalApiService by lazy {
