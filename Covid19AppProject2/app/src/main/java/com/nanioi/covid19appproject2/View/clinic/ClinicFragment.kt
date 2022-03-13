@@ -12,24 +12,21 @@ import android.view.View
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.tasks.CancellationTokenSource
-import com.nanioi.covid19appproject2.Model.apiService.ClinicInfoApi
-import com.nanioi.covid19appproject2.Model.db.dao.ClinicLocationDao
+import com.gun0912.tedpermission.rx3.TedPermission
 import com.nanioi.covid19appproject2.R
-import com.nanioi.covid19appproject2.ViewModel.ClinicViewModel
 import com.nanioi.covid19appproject2.adapters.ClinicListAdapter
 import com.nanioi.covid19appproject2.databinding.FragmentClinicBinding
+import com.nanioi.covid19appproject2.repository.Repository
 import com.naver.maps.geometry.LatLng
 import com.naver.maps.map.*
 import com.naver.maps.map.util.FusedLocationSource
 import kotlinx.coroutines.*
-import org.koin.android.viewmodel.ext.android.viewModel
 import java.io.IOException
 import java.util.*
 import kotlin.collections.ArrayList
@@ -43,16 +40,10 @@ class ClinicFragment : Fragment(R.layout.fragment_clinic), OnMapReadyCallback {
         binding.mapView
     }
     private lateinit var naverMap: NaverMap
-
-    private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
     private lateinit var locationSource: FusedLocationSource
-    private var cancellationTokenSource: CancellationTokenSource? = null
-
     private lateinit var mGeocoder: Geocoder
 
     private val clinicListAdapter = ClinicListAdapter()
-
-    private val clinicViewModel by viewModel<ClinicViewModel>()
 
 
     override fun onAttach(context: Context) {
@@ -65,11 +56,6 @@ class ClinicFragment : Fragment(R.layout.fragment_clinic), OnMapReadyCallback {
 
         val fragmentClinicBinding = FragmentClinicBinding.bind(view)
         binding = fragmentClinicBinding
-
-        //initViews()
-        initVariables()
-        requestLocationPermissions()
-        clinicViewModel.insertList()
 
         mapView.onCreate(savedInstanceState)
         mapView.getMapAsync(this)
@@ -108,7 +94,6 @@ class ClinicFragment : Fragment(R.layout.fragment_clinic), OnMapReadyCallback {
 
     override fun onDestroy() {
         super.onDestroy()
-        cancellationTokenSource?.cancel()
         scope.cancel()
         mapView.onDestroy()
     }
@@ -128,27 +113,32 @@ class ClinicFragment : Fragment(R.layout.fragment_clinic), OnMapReadyCallback {
         val uiSetting = naverMap.uiSettings
         uiSetting.isLocationButtonEnabled = false // 원래 버튼 안보이게
 
+        locationSource = FusedLocationSource(this, REQUEST_ACCESS_LOCATION_PERMISSIONS)
         naverMap.locationSource = locationSource
 
         var latitude = 37.497885
         var longitude = 127.027512
 
         latitude = naverMap.cameraPosition.target.latitude
-        longitude = naverMap.cameraPosition.target.latitude
+        longitude = naverMap.cameraPosition.target.longitude
 
         Log.d(TAG, "위도 : ${latitude}, 경도 : ${longitude}")
+
+        mGeocoder = Geocoder(mContext, Locale.KOREA)
+        val address = mGeocoder.getFromLocation(latitude,longitude,1)
+        Log.d(TAG, "주 : ${address}")
+        Log.d(TAG, "구 : ${address[0].subLocality}")
+        Log.d(TAG, " 시 : ${address[0].adminArea}")
+
+        scope.launch {
+
+        }
 
         // 위치 변경
         val cameraUpdate = CameraUpdate.scrollTo(LatLng(latitude, longitude))
         naverMap.moveCamera(cameraUpdate)
     }
 
-
-    private fun initVariables() {
-        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(mContext)
-    }
-
-    @SuppressLint("MissingPermission")
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<out String>,
@@ -156,53 +146,20 @@ class ClinicFragment : Fragment(R.layout.fragment_clinic), OnMapReadyCallback {
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
 
-        // 접근권한 부여되었는지 확인하기
-        val locationPermissionGranted =
-            requestCode == REQUEST_ACCESS_LOCATION_PERMISSIONS && grantResults[0] == PackageManager.PERMISSION_GRANTED
-
-
-        if (!locationPermissionGranted) {
-            activity?.finish()
-        } else {
-            //fetchData
-            getCurrentLocationAddress()
+        if (requestCode != REQUEST_ACCESS_LOCATION_PERMISSIONS) {
+            return
         }
-    }
-
-    private fun requestLocationPermissions() {
-
-        locationSource =
-            FusedLocationSource(this, REQUEST_ACCESS_LOCATION_PERMISSIONS)
-
-        ActivityCompat.requestPermissions(
-            requireActivity(),
-            arrayOf(
-                Manifest.permission.ACCESS_COARSE_LOCATION,
-                Manifest.permission.ACCESS_FINE_LOCATION
-            ),
-            REQUEST_ACCESS_LOCATION_PERMISSIONS
-        )
-    }
-
-    @SuppressLint("MissingPermission")
-    private fun getCurrentLocationAddress() {
-        mGeocoder = Geocoder(mContext, Locale.KOREA)
-        var address: ArrayList<Address>
-
-        cancellationTokenSource = CancellationTokenSource()
-
-        fusedLocationProviderClient.getCurrentLocation(
-            LocationRequest.PRIORITY_HIGH_ACCURACY,
-            cancellationTokenSource!!.token
-        ).addOnSuccessListener { location ->
-            Log.d(TAG, "위도 : ${location.latitude}, 경도 : ${location.longitude}")
-            clinicViewModel.fetchClinicData(location.latitude,location.longitude)
+        if (locationSource.onRequestPermissionsResult(requestCode, permissions, grantResults)) {
+            if (!locationSource.isActivated) {
+                naverMap.locationTrackingMode = LocationTrackingMode.None
+            }
+            return
         }
+
     }
 
     companion object {
         private val TAG = "ClinicFragment"
         private const val REQUEST_ACCESS_LOCATION_PERMISSIONS = 1000
-        private const val REQUEST_BACKGROUND_ACCESS_LOCATION_PERMISSIONS = 1001
     }
 }

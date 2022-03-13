@@ -21,8 +21,8 @@ abstract class ClinicDatabase: RoomDatabase() {
     companion object {
         const val DB_NAME = "ClinicDatabase.db"
 
-//        fun build(context:Context): ClinicDatabase =
-//            Room.databaseBuilder(context,ClinicDatabase::class.java, DB_NAME).build()
+        fun build(context:Context): ClinicDatabase =
+            Room.databaseBuilder(context,ClinicDatabase::class.java, DB_NAME).build()
     }
 }
 

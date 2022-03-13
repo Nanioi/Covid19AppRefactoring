@@ -4,9 +4,7 @@ import com.nanioi.covid19appproject2.Model.entity.ClinicLocationEntity
 
 interface ClinicRepository {
 
-    suspend fun insertClinicList()
+    suspend fun getClinicLocationInfo()
 
-    suspend fun getClinicLocationInfo():List<ClinicLocationEntity>?
-
-    suspend fun getClinicLocationAroundInfo(x:Double,y:Double):List<ClinicLocationEntity>?
+    suspend fun getClinicLocationAroundInfo(city:String,sigungu:String):List<ClinicLocationEntity>
 }

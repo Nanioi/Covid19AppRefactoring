@@ -4,7 +4,7 @@ import com.google.firebase.storage.FirebaseStorage
 import com.nanioi.covid19appproject2.Model.entity.ClinicLocationEntity
 import kotlinx.coroutines.tasks.await
 
-internal class ClinicInfoStorageApi (
+class ClinicInfoStorageApi (
     firebaseStorage: FirebaseStorage
 ):ClinicInfoApi{
     private val sheetReference = firebaseStorage.reference.child(CLINIC_INFO_FILE_NAME)
