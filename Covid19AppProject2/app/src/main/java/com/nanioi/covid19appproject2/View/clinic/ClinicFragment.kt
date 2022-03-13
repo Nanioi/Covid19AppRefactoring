@@ -12,24 +12,21 @@ import android.view.View
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.tasks.CancellationTokenSource
-import com.nanioi.covid19appproject2.Model.apiService.ClinicInfoApi
-import com.nanioi.covid19appproject2.Model.db.dao.ClinicLocationDao
+import com.gun0912.tedpermission.rx3.TedPermission
 import com.nanioi.covid19appproject2.R
-import com.nanioi.covid19appproject2.ViewModel.ClinicViewModel
 import com.nanioi.covid19appproject2.adapters.ClinicListAdapter
 import com.nanioi.covid19appproject2.databinding.FragmentClinicBinding
+import com.nanioi.covid19appproject2.repository.Repository
 import com.naver.maps.geometry.LatLng
 import com.naver.maps.map.*
 import com.naver.maps.map.util.FusedLocationSource
 import kotlinx.coroutines.*
-import org.koin.android.viewmodel.ext.android.viewModel
 import java.io.IOException
 import java.util.*
 import kotlin.collections.ArrayList
@@ -52,8 +49,6 @@ class ClinicFragment : Fragment(R.layout.fragment_clinic), OnMapReadyCallback {
 
     private val clinicListAdapter = ClinicListAdapter()
 
-    private val clinicViewModel by viewModel<ClinicViewModel>()
-
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -69,7 +64,6 @@ class ClinicFragment : Fragment(R.layout.fragment_clinic), OnMapReadyCallback {
         //initViews()
         initVariables()
         requestLocationPermissions()
-        clinicViewModel.insertList()
 
         mapView.onCreate(savedInstanceState)
         mapView.getMapAsync(this)
@@ -196,7 +190,20 @@ class ClinicFragment : Fragment(R.layout.fragment_clinic), OnMapReadyCallback {
             cancellationTokenSource!!.token
         ).addOnSuccessListener { location ->
             Log.d(TAG, "위도 : ${location.latitude}, 경도 : ${location.longitude}")
-            clinicViewModel.fetchClinicData(location.latitude,location.longitude)
+            // todo 주소변환
+            scope.launch {
+                try {
+                    val regionInfo = Repository.getRegionInfo(
+                        location.latitude,
+                        location.longitude)
+
+                    Log.d(TAG, regionInfo.toString())
+
+                }catch (exception: Exception) {
+                    exception.printStackTrace()
+                    Log.d(TAG, "XX")
+                }
+            }
         }
     }
 
