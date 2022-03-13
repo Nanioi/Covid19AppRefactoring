@@ -40,11 +40,7 @@ class ClinicFragment : Fragment(R.layout.fragment_clinic), OnMapReadyCallback {
         binding.mapView
     }
     private lateinit var naverMap: NaverMap
-
-    private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
     private lateinit var locationSource: FusedLocationSource
-    private var cancellationTokenSource: CancellationTokenSource? = null
-
     private lateinit var mGeocoder: Geocoder
 
     private val clinicListAdapter = ClinicListAdapter()
@@ -60,10 +56,6 @@ class ClinicFragment : Fragment(R.layout.fragment_clinic), OnMapReadyCallback {
 
         val fragmentClinicBinding = FragmentClinicBinding.bind(view)
         binding = fragmentClinicBinding
-
-        //initViews()
-        initVariables()
-        requestLocationPermissions()
 
         mapView.onCreate(savedInstanceState)
         mapView.getMapAsync(this)
@@ -102,7 +94,6 @@ class ClinicFragment : Fragment(R.layout.fragment_clinic), OnMapReadyCallback {
 
     override fun onDestroy() {
         super.onDestroy()
-        cancellationTokenSource?.cancel()
         scope.cancel()
         mapView.onDestroy()
     }
@@ -122,27 +113,32 @@ class ClinicFragment : Fragment(R.layout.fragment_clinic), OnMapReadyCallback {
         val uiSetting = naverMap.uiSettings
         uiSetting.isLocationButtonEnabled = false // 원래 버튼 안보이게
 
+        locationSource = FusedLocationSource(this, REQUEST_ACCESS_LOCATION_PERMISSIONS)
         naverMap.locationSource = locationSource
 
         var latitude = 37.497885
         var longitude = 127.027512
 
         latitude = naverMap.cameraPosition.target.latitude
-        longitude = naverMap.cameraPosition.target.latitude
+        longitude = naverMap.cameraPosition.target.longitude
 
         Log.d(TAG, "위도 : ${latitude}, 경도 : ${longitude}")
+
+        mGeocoder = Geocoder(mContext, Locale.KOREA)
+        val address = mGeocoder.getFromLocation(latitude,longitude,1)
+        Log.d(TAG, "주 : ${address}")
+        Log.d(TAG, "구 : ${address[0].subLocality}")
+        Log.d(TAG, " 시 : ${address[0].adminArea}")
+
+        scope.launch {
+
+        }
 
         // 위치 변경
         val cameraUpdate = CameraUpdate.scrollTo(LatLng(latitude, longitude))
         naverMap.moveCamera(cameraUpdate)
     }
 
-
-    private fun initVariables() {
-        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(mContext)
-    }
-
-    @SuppressLint("MissingPermission")
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<out String>,
@@ -150,66 +146,20 @@ class ClinicFragment : Fragment(R.layout.fragment_clinic), OnMapReadyCallback {
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
 
-        // 접근권한 부여되었는지 확인하기
-        val locationPermissionGranted =
-            requestCode == REQUEST_ACCESS_LOCATION_PERMISSIONS && grantResults[0] == PackageManager.PERMISSION_GRANTED
-
-
-        if (!locationPermissionGranted) {
-            activity?.finish()
-        } else {
-            //fetchData
-            getCurrentLocationAddress()
+        if (requestCode != REQUEST_ACCESS_LOCATION_PERMISSIONS) {
+            return
         }
-    }
-
-    private fun requestLocationPermissions() {
-
-        locationSource =
-            FusedLocationSource(this, REQUEST_ACCESS_LOCATION_PERMISSIONS)
-
-        ActivityCompat.requestPermissions(
-            requireActivity(),
-            arrayOf(
-                Manifest.permission.ACCESS_COARSE_LOCATION,
-                Manifest.permission.ACCESS_FINE_LOCATION
-            ),
-            REQUEST_ACCESS_LOCATION_PERMISSIONS
-        )
-    }
-
-    @SuppressLint("MissingPermission")
-    private fun getCurrentLocationAddress() {
-        mGeocoder = Geocoder(mContext, Locale.KOREA)
-        var address: ArrayList<Address>
-
-        cancellationTokenSource = CancellationTokenSource()
-
-        fusedLocationProviderClient.getCurrentLocation(
-            LocationRequest.PRIORITY_HIGH_ACCURACY,
-            cancellationTokenSource!!.token
-        ).addOnSuccessListener { location ->
-            Log.d(TAG, "위도 : ${location.latitude}, 경도 : ${location.longitude}")
-            // todo 주소변환
-            scope.launch {
-                try {
-                    val regionInfo = Repository.getRegionInfo(
-                        location.latitude,
-                        location.longitude)
-
-                    Log.d(TAG, regionInfo.toString())
-
-                }catch (exception: Exception) {
-                    exception.printStackTrace()
-                    Log.d(TAG, "XX")
-                }
+        if (locationSource.onRequestPermissionsResult(requestCode, permissions, grantResults)) {
+            if (!locationSource.isActivated) {
+                naverMap.locationTrackingMode = LocationTrackingMode.None
             }
+            return
         }
+
     }
 
     companion object {
         private val TAG = "ClinicFragment"
         private const val REQUEST_ACCESS_LOCATION_PERMISSIONS = 1000
-        private const val REQUEST_BACKGROUND_ACCESS_LOCATION_PERMISSIONS = 1001
     }
 }
