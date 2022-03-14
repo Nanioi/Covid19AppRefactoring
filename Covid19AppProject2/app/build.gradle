@@ -39,6 +39,9 @@ android {
         viewBinding = true
     }
 }
+repositories {
+    maven { url 'https://jitpack.io' }
+}
 
 dependencies {
 
@@ -55,19 +58,9 @@ dependencies {
     //Swipe Refresh Layout
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
 
-    // koin DI
-//    implementation "org.koin:koin-android:2.2.2"
-//    implementation "org.koin:koin-android-scope:2.2.2"
-//    implementation "org.koin:koin-android-viewmodel:2.2.2"
-//    implementation "org.koin:koin-android-fragment:2.2.2"
-//    implementation "org.koin:koin-android-ext:2.2.2"
-
     //NaverMap
     implementation 'com.naver.maps:map-sdk:3.11.0'
     implementation 'com.google.android.gms:play-services-location:18.0.0'
-
-    // Ted Permission - RxJava3
-    implementation 'io.github.ParkSangGwon:tedpermission-rx3:3.3.0'
 
     //Firebase
     implementation platform('com.google.firebase:firebase-bom:29.1.0')
@@ -104,5 +97,8 @@ dependencies {
 
     // Location
     implementation 'com.google.android.gms:play-services-location:18.0.0'
+
+    // BarChart
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
 
 }

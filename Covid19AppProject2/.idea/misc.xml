@@ -14,6 +14,7 @@
         <entry key="app/src/main/res/drawable-v24/selector_menu_color.xml" value="0.25555555555555554" />
         <entry key="app/src/main/res/drawable/pink_radius.xml" value="0.390625" />
         <entry key="app/src/main/res/drawable/radius_gray.xml" value="0.390625" />
+        <entry key="app/src/main/res/drawable/talkballoon.xml" value="0.23148148148148148" />
         <entry key="app/src/main/res/drawable/top_radius_white_background.xml" value="0.36574074074074076" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="app/src/main/res/layout/bottom_sheet.xml" value="0.37447916666666664" />
@@ -23,8 +24,10 @@
         <entry key="app/src/main/res/layout/fragment_precaution.xml" value="0.37447916666666664" />
         <entry key="app/src/main/res/layout/fragment_status.xml" value="0.21197916666666666" />
         <entry key="app/src/main/res/layout/fragment_summary.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/image.xml" value="0.2717391304347826" />
         <entry key="app/src/main/res/layout/item_clinic_list.xml" value="0.33" />
         <entry key="app/src/main/res/layout/item_clinic_viewpager.xml" value="0.2463768115942029" />
+        <entry key="app/src/main/res/layout/maker.xml" value="0.271286231884058" />
         <entry key="app/src/main/res/menu/bottom_navigation_menu.xml" value="0.3687179487179487" />
       </map>
     </option>

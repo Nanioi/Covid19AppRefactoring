@@ -23,7 +23,6 @@ import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.tasks.CancellationTokenSource
-import com.gun0912.tedpermission.rx3.TedPermission
 import com.nanioi.covid19appproject2.Model.db.ClinicDatabase
 import com.nanioi.covid19appproject2.Model.entity.ClinicLocationEntity
 import com.nanioi.covid19appproject2.Model.entity.ClinicLocationLatLng
@@ -31,7 +30,6 @@ import com.nanioi.covid19appproject2.R
 import com.nanioi.covid19appproject2.adapters.ClinicListAdapter
 import com.nanioi.covid19appproject2.adapters.ClinicViewPagerAdapter
 import com.nanioi.covid19appproject2.databinding.FragmentClinicBinding
-import com.nanioi.covid19appproject2.repository.Repository
 import com.naver.maps.geometry.LatLng
 import com.naver.maps.map.*
 import com.naver.maps.map.overlay.Marker
