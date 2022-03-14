@@ -22,6 +22,7 @@ class ClinicListAdapter : ListAdapter<ClinicLocationEntity, ClinicListAdapter.Vi
         private val binding: ItemClinicListBinding
     ) : RecyclerView.ViewHolder(binding.root) {
 
+        @SuppressLint("SetTextI18n")
         fun bind(item: ClinicLocationEntity) = with(binding) {
             name.text = item.clinic_name
             address.text = item.address
