@@ -13,8 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.nanioi.covid19appproject2.Model.entity.ClinicLocationEntity
 import com.nanioi.covid19appproject2.databinding.ItemClinicViewpagerBinding
 
-class ClinicViewPagerAdapter(val itemClicked: (ClinicLocationEntity) -> Unit) :
-    ListAdapter<ClinicLocationEntity, ClinicViewPagerAdapter.ItemViewHoler>(differ) {
+class ClinicViewPagerAdapter: ListAdapter<ClinicLocationEntity, ClinicViewPagerAdapter.ItemViewHoler>(differ) {
 
     inner class ItemViewHoler(
         private val binding: ItemClinicViewpagerBinding
@@ -24,11 +23,7 @@ class ClinicViewPagerAdapter(val itemClicked: (ClinicLocationEntity) -> Unit) :
         fun bind(item: ClinicLocationEntity) = with(binding) {
             name.text = item.clinic_name
             address.text = item.address
-            telePhoneNum.text = item.telephone_num
-
-            binding.root.setOnClickListener {
-                itemClicked(item)
-            }
+            telePhoneNum.text = " ☎︎︎ : ${item.telephone_num}"
         }
     }
 

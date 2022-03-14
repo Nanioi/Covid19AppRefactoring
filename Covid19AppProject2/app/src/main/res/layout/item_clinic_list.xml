@@ -33,15 +33,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        app:layout_constraintTop_toBottomOf="@+id/address"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/address">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:paddingVertical="10dp"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:paddingVertical="10dp">
 
             <TextView
                 android:id="@+id/weekday"
@@ -49,20 +49,18 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/circle_gray"
                 android:gravity="center"
+                android:text="평"
                 android:textColor="@color/dark_gray"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="평" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/weekday_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:textSize="15sp"
+                android:layout_marginStart="15dp"
                 android:textColor="@color/black"
-                android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@+id/weekday"
                 app:layout_constraintStart_toEndOf="@+id/weekday"
                 app:layout_constraintTop_toTopOf="@id/weekday"
@@ -72,25 +70,23 @@
                 android:id="@+id/sunday"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:background="@drawable/circle_red"
                 android:gravity="center"
+                android:text="일"
                 android:textColor="@color/circle_red"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="@id/weekday"
-                android:layout_marginTop="5dp"
-                app:layout_constraintTop_toBottomOf="@id/weekday"
-                tools:text="일" />
+                app:layout_constraintTop_toBottomOf="@id/weekday" />
 
             <TextView
                 android:id="@+id/sunday_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="15sp"
                 android:textColor="@color/black"
-                android:textStyle="bold"
-                app:layout_constraintTop_toTopOf="@id/sunday"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="@id/weekday_time"
+                app:layout_constraintTop_toTopOf="@id/sunday"
                 tools:text="9:00~12:00" />
 
 
@@ -98,58 +94,54 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="0dp"
-            android:paddingVertical="10dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:paddingVertical="10dp">
 
             <TextView
                 android:id="@+id/saturday"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textStyle="bold"
                 android:background="@drawable/circle_blue"
                 android:gravity="center"
+                android:text="토"
                 android:textColor="@color/dark_blue"
-                app:layout_constraintTop_toTopOf="parent"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                tools:text="토" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/saturday_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:textSize="15sp"
+                android:layout_marginStart="15dp"
                 android:textColor="@color/black"
-                android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@+id/saturday"
-                app:layout_constraintTop_toTopOf="@id/saturday"
                 app:layout_constraintStart_toEndOf="@+id/saturday"
+                app:layout_constraintTop_toTopOf="@id/saturday"
                 tools:text="9:00~12:00" />
 
             <TextView
                 android:id="@+id/holiday"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:textStyle="bold"
+                android:layout_marginTop="10dp"
                 android:background="@drawable/circle_green"
                 android:gravity="center"
+                android:text="공"
                 android:textColor="@color/circle_green"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="@+id/saturday"
-               app:layout_constraintTop_toBottomOf="@+id/saturday"
-                tools:text="공" />
+                app:layout_constraintTop_toBottomOf="@+id/saturday" />
 
             <TextView
                 android:id="@+id/holiday_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="15sp"
                 android:textColor="@color/black"
-                android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@+id/holiday"
-                app:layout_constraintTop_toTopOf="@id/holiday"
                 app:layout_constraintStart_toStartOf="@+id/saturday_time"
+                app:layout_constraintTop_toTopOf="@id/holiday"
                 tools:text="9:00~12:00" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -160,8 +152,8 @@
         android:id="@+id/tele_phone_num"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="14sp"
         android:layout_marginStart="5dp"
+        android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/operating_time"
         tools:text="☎︎ 031-123-1234" />

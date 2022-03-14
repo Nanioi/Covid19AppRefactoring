@@ -22,7 +22,10 @@ abstract class ClinicDatabase: RoomDatabase() {
         const val DB_NAME = "ClinicDatabase.db"
 
         fun build(context:Context): ClinicDatabase =
-            Room.databaseBuilder(context,ClinicDatabase::class.java, DB_NAME).build()
+            Room.databaseBuilder(context,ClinicDatabase::class.java, DB_NAME)
+                .allowMainThreadQueries()
+                .fallbackToDestructiveMigration()
+                .build()
     }
 }
 
