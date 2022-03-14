@@ -26,13 +26,10 @@
 <p float="left">
 <img src = "https://user-images.githubusercontent.com/52556870/158206182-073f6084-24bd-4020-93c3-c8e27da96fb8.jpg" width="200">
 <img src = "https://user-images.githubusercontent.com/52556870/158206271-078d41fd-7285-4f4a-9f5d-c3854de1fc9f.jpg" width="200">
-<img src = "https://user-images.githubusercontent.com/52556870/158206223-ee2311c4-9d78-4177-b9ac-45a0e4ab45af.jpg" width="200">
 <img src = "https://user-images.githubusercontent.com/52556870/158205913-e764b814-f583-4cf0-a015-56a17fdfccde.jpg" width="200">
+<img width="200" src="https://user-images.githubusercontent.com/52556870/158206454-600148ee-2087-449c-88b2-50f4e767de72.gif">
 </p>
 
-##### 실행영상
-
-<img width="200" src="https://user-images.githubusercontent.com/52556870/158206454-600148ee-2087-449c-88b2-50f4e767de72.gif">
 
 #### 예방수칙 
 <img src = "https://user-images.githubusercontent.com/52556870/153616667-b744ce7d-2313-499a-8af6-6bfaf8626c2c.jpg" width="200">
