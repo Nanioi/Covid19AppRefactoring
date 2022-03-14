@@ -14,8 +14,9 @@ interface ClinicLocationDao {
     @Query("SELECT * FROM ClinicLocationEntity WHERE city = :city and sigungu = :sigungu")
     suspend fun getLocationAround(city : String, sigungu:String) : List<ClinicLocationEntity>?
 
+    @Transaction
     @Insert
-    suspend fun insert(itemEntity : ClinicLocationEntity)
+    suspend fun insert(Entity : ClinicLocationEntity)
 
     @Transaction
     @Insert(onConflict = OnConflictStrategy.REPLACE)

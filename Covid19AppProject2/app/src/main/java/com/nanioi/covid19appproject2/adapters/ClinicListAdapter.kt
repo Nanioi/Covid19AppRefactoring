@@ -27,8 +27,9 @@ class ClinicListAdapter : ListAdapter<ClinicLocationEntity, ClinicListAdapter.Vi
             address.text = item.address
             weekdayTime.text = item.weekday_operating_time
             saturdayTime.text = item.saturday_operating_time
+            sundayTime.text = item.sunday_operating_time
             holidayTime.text = item.holiday_operating_time
-            telePhoneNum.text = item.telephone_num
+            telePhoneNum.text = " ☎︎︎ : ${item.telephone_num}"
         }
 
     }

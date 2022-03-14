@@ -4,6 +4,7 @@ import android.Manifest
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.pm.PackageManager
+import android.content.res.AssetManager
 import android.location.Address
 import android.location.Geocoder
 import android.os.Bundle
@@ -14,11 +15,15 @@ import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.room.Room
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.tasks.CancellationTokenSource
 import com.gun0912.tedpermission.rx3.TedPermission
+import com.nanioi.covid19appproject2.Model.db.ClinicDatabase
+import com.nanioi.covid19appproject2.Model.entity.ClinicLocationEntity
+import com.nanioi.covid19appproject2.Model.entity.ClinicLocationLatLng
 import com.nanioi.covid19appproject2.R
 import com.nanioi.covid19appproject2.adapters.ClinicListAdapter
 import com.nanioi.covid19appproject2.databinding.FragmentClinicBinding
@@ -28,6 +33,7 @@ import com.naver.maps.map.*
 import com.naver.maps.map.util.FusedLocationSource
 import kotlinx.coroutines.*
 import java.io.IOException
+import java.io.InputStream
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -44,6 +50,8 @@ class ClinicFragment : Fragment(R.layout.fragment_clinic), OnMapReadyCallback {
     private lateinit var mGeocoder: Geocoder
 
     private val clinicListAdapter = ClinicListAdapter()
+    var clinicList = listOf<ClinicLocationEntity>()
+    var clinicLatLngList = listOf<ClinicLocationLatLng>()
 
 
     override fun onAttach(context: Context) {
@@ -128,11 +136,9 @@ class ClinicFragment : Fragment(R.layout.fragment_clinic), OnMapReadyCallback {
         val address = mGeocoder.getFromLocation(latitude,longitude,1)
         Log.d(TAG, "주 : ${address}")
         Log.d(TAG, "구 : ${address[0].subLocality}")
-        Log.d(TAG, " 시 : ${address[0].adminArea}")
+        Log.d(TAG, " 시 : ${address[0].adminArea.substring(0,2)}")
 
-        scope.launch {
-
-        }
+        getClinicLocationInfo(address[0].adminArea.substring(0,2),address[0].subLocality)
 
         // 위치 변경
         val cameraUpdate = CameraUpdate.scrollTo(LatLng(latitude, longitude))
@@ -156,6 +162,32 @@ class ClinicFragment : Fragment(R.layout.fragment_clinic), OnMapReadyCallback {
             return
         }
 
+    }
+    private fun getClinicLocationInfo(city:String,sigungu:String){
+
+        val ClinicLocationDB = Room.databaseBuilder(
+            requireContext(),
+            ClinicDatabase::class.java,
+            ClinicDatabase.DB_NAME
+        ).build()
+
+        val assetManager : AssetManager = resources.assets
+        val inputStream : InputStream = assetManager.open("clinic_info.txt")
+
+        inputStream.bufferedReader().readLines().forEach {
+            var token = it.split("\t")
+            Log.d("db_test","${token}")
+            var item = ClinicLocationEntity(token[0].toInt(),token[1],token[2],token[3],token[4],token[5],token[6],token[7],token[8],token[9])
+            CoroutineScope(Dispatchers.Main).launch {
+                ClinicLocationDB.clinicDao().insert(item)
+            }
+        }
+        CoroutineScope(Dispatchers.Main).launch {
+            val output = ClinicLocationDB.clinicDao().getLocationAround(city,sigungu)
+            clinicListAdapter.submitList(output)
+            clinicList = output?: listOf()
+            Log.d(TAG, "$clinicList")
+        }
     }
 
     companion object {
